@@ -18,13 +18,13 @@ node {
 
         echo "Building version"
     
-        sh "mvn clean package -DskipTests"
+        sh "${mvn} clean package -DskipTests"
     }
 
     stage ("Unit Tests"){
 
         echo "Unit Tests"
-        sh "mvn test"
+        sh "${mvn} test"
     }
 
     stage ("Docker Build"){
