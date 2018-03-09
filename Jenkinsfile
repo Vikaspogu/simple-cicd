@@ -1,7 +1,8 @@
 node {
 
     def docEnv = "\$(minikube docker-env)"
-
+    def mvnHome = tool 'M3'
+    
     stage "Checkout Source" 
 
         checkout scm
@@ -15,13 +16,13 @@ node {
     stage "Build war" 
 
         echo "Building version"
-
-        sh "mvn clean package -DskipTests"
+    
+        sh "${mvnHome}/bin/mvn clean package -DskipTests"
     
     stage "Unit Tests" 
 
         echo "Unit Tests"
-        sh "mvn test"
+        sh "${mvnHome}/bin/mvn test"
     
     stage "Docker Build"
     
