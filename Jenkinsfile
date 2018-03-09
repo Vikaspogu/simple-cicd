@@ -1,6 +1,7 @@
 node {
     
     def mvnHome = tool 'maven-3'
+    def docker-env = "$(minikube docker-env)"
 
     stage "Checkout Source" 
 
@@ -25,7 +26,7 @@ node {
     
     stage "Docker Build"
     
-        sh "eval $(minikube docker-env)"
+        sh "eval ${docker-env}"
         sh "docker build -t ${imageName} ."
 
     stage "Docker Deploy"
