@@ -1,5 +1,6 @@
 node {
-    stage('Checkout Source') {
+    echo "In Jenkinsfile"
+    stage "Checkout Source" {
         checkout scm
     }
     stage "Build war" {
