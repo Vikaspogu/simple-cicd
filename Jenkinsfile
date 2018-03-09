@@ -1,5 +1,5 @@
 #!groovy
-node('maven') {
+node('master') {
     stage('Checkout Source') {
         checkout scm
     }
