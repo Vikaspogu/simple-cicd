@@ -1,5 +1,8 @@
 node {
-    echo "In Jenkinsfile"
+    tools
+
+        maven 'M3'
+
     stage "Checkout Source" 
 
         checkout scm
