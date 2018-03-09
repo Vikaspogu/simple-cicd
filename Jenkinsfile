@@ -3,7 +3,7 @@ node {
     def docEnv = "\$(minikube docker-env)"
     env.PATH = "${tool 'M3'}/bin:${env.PATH}"
     
-    stage "Checkout Source" 
+    stage ("Checkout Source"){
 
         checkout scm
 
@@ -12,25 +12,29 @@ node {
         appName = "sample-demo"
         imageName = "${appName}:latest"
         env.BUILDIMG=imageName
-    
-    stage "Build war" 
+    } 
+
+    stage ("Build war"){
 
         echo "Building version"
     
         sh "mvn clean package -DskipTests"
-    
-    stage "Unit Tests" 
+    }
+
+    stage ("Unit Tests"){
 
         echo "Unit Tests"
         sh "mvn test"
-    
-    stage "Docker Build"
+    }
+
+    stage ("Docker Build"){
     
         sh "eval ${docEnv}"
         sh "docker build -t ${imageName} ."
+    }
 
-    stage "Docker Deploy"
+    stage ("Docker Deploy"){
 
         sh "kubectl create -f  deploy.yml"
-    
+    }
 }
