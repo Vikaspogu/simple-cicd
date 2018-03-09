@@ -1,12 +1,12 @@
 node {
     echo "In Jenkinsfile"
     stage "Checkout Source" 
-    
+
         checkout scm
     
     stage "Build war" 
 
-        echo "Building version ${version}"
+        echo "Building version"
 
         sh "mvn clean package -DskipTests"
     
