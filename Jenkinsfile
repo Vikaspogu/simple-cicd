@@ -13,18 +13,18 @@ node {
         env.BUILDIMG=imageName
     } 
 
-    stage ("Build war"){
+    // stage ("Build war"){
         
-        echo "Building version"
+    //     echo "Building version"
         
-        sh "${mvnHome}/bin/mvn clean package"
-    }
+    //     sh "${mvnHome}/bin/mvn clean package"
+    // }
 
-    stage ("Unit Tests"){
+    // stage ("Unit Tests"){
 
-        echo "Unit Tests"
-        sh "${mvnHome}/bin/mvn test"
-    }
+    //     echo "Unit Tests"
+    //     sh "${mvnHome}/bin/mvn test"
+    // }
 
     stage ("Docker Build"){
     
