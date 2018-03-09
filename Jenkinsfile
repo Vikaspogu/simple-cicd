@@ -1,26 +1,35 @@
 node {
-    tools
-
-        maven 'M3'
+    
+    def mvnHome = tool 'maven-3'
 
     stage "Checkout Source" 
 
         checkout scm
+
+        env.DOCKER_API_VERSION="1.23"
+
+        appName = "sample-demo"
+        imageName = "${appName}:latest"
+        env.BUILDIMG=imageName
     
     stage "Build war" 
 
         echo "Building version"
 
-        sh "mvn clean package -DskipTests"
+        sh "${mvnHome}/bin/mvn clean package -DskipTests"
     
     stage "Unit Tests" 
 
         echo "Unit Tests"
-        sh "mvn test"
+        sh "${mvnHome}/bin/mvn test"
     
-    stage "Run war" 
+    stage "Docker Build"
+    
+        sh "eval $(minikube docker-env)"
+        sh "docker build -t ${imageName} ."
 
-        echo "Run war"
-        sh "java -jar target/demo-0.0.1-SNAPSHOT.jar"
+    stage "Docker Deploy"
+
+        sh "kubectl create -f  deploy.yml"
     
 }
