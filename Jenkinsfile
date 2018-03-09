@@ -16,7 +16,7 @@ node {
     stage ("Build war"){
         env.PATH = "${tool 'M3'}/bin:${env.PATH}"
         echo "Building version"
-        echo "mvn -version"
+        sh "mvn -version"
         sh "mvn clean package"
     }
 
