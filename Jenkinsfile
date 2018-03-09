@@ -1,7 +1,9 @@
 node {
 
     def docEnv = "\$(minikube docker-env)"
-    env.PATH = "${tool 'M3'}/bin:${env.PATH}"
+    tools {
+        maven 'M3'   
+    }    
     
     stage ("Checkout Source"){
 
