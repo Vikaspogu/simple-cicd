@@ -1,7 +1,7 @@
 node {
     
     def mvnHome = tool 'maven-3'
-    def docEnv = "$(minikube docker-env)"
+    def docEnv = "\$(minikube docker-env)"
 
     stage "Checkout Source" 
 
