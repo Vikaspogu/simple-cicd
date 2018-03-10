@@ -16,17 +16,17 @@ podTemplate(label: 'mypod', containers: [
             env.BUILDIMG=imageName
         } 
 
-        stage ("Build war"){
-            container('maven') {
-                echo "Building version"
-                sh "mvn clean package"
-            }
-        }
-
         stage ("Unit Tests"){
             container('maven') {
                 echo "Unit Tests"
                 sh "mvn test"
+            }
+        }
+
+        stage ("Build war"){
+            container('maven') {
+                echo "Building version"
+                sh "mvn clean install -DskipTests"
             }
         }
 
