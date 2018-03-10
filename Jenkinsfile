@@ -19,11 +19,10 @@ podTemplate(label: 'mypod', containers: [
         stage ("Build war"){
             container('maven') {
                 echo "Building version"
-                sh 'cp -a /root/.m2/repository-read-only /root/.m2/repository'
                 sh 'mvn -B clean install -Dmaven.test.skip=true -Dfindbugs.fork=false'
             }
         }
-        
+
         stage ("Unit Tests"){
             container('maven') {
                 echo "Unit Tests"
