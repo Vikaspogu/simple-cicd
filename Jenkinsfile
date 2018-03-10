@@ -16,17 +16,18 @@ podTemplate(label: 'mypod', containers: [
             env.BUILDIMG=imageName
         } 
 
-        stage ("Unit Tests"){
-            container('maven') {
-                echo "Unit Tests"
-                sh "mvn test"
-            }
-        }
-
         stage ("Build war"){
             container('maven') {
                 echo "Building version"
-                sh "mvn clean install -DskipTests"
+                sh 'cp -a /root/.m2/repository-read-only /root/.m2/repository'
+                sh 'mvn -B clean install -Dmaven.test.skip=true -Dfindbugs.fork=false'
+            }
+        }
+        
+        stage ("Unit Tests"){
+            container('maven') {
+                echo "Unit Tests"
+                sh 'mvn -B test -DconnectorHost=0.0.0.0'
             }
         }
 
