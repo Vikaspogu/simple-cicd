@@ -7,8 +7,7 @@ podTemplate(label: 'mypod', containers: [
         resourceLimitMemory: '1200Mi')
   ],
   volumes: [
-    hostPathVolume(mountPath: '/var/run/docker.sock', hostPath: '/var/run/docker.sock'),secretVolume(secretName: 'maven-settings', mountPath: '/root/.m2'),
-    persistentVolumeClaim(claimName: 'maven-local-repo', mountPath: '/root/.m2nrepo')
+    hostPathVolume(mountPath: '/var/run/docker.sock', hostPath: '/var/run/docker.sock')
   ]) {
     node('mypod') {
 
