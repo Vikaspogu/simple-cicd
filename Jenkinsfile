@@ -7,15 +7,15 @@ podTemplate(label: 'mypod', containers: [
         resourceLimitMemory: '1200Mi')
   ],
   volumes: [
-    hostPathVolume(mountPath: '/var/run/docker.sock', hostPath: '/var/run/docker.sock'),
+    hostPathVolume(mountPath: '/var/run/docker.sock', hostPath: '/var/run/docker.sock'),secretVolume(secretName: 'maven-settings', mountPath: '/root/.m2'),
+    persistentVolumeClaim(claimName: 'maven-local-repo', mountPath: '/root/.m2nrepo')
   ]) {
     node('mypod') {
 
         stage ("Checkout Source"){
             checkout scm
-            env.DOCKER_API_VERSION="1.23"
             appName = "sample-demo"
-            imageName = "localhost:5000/"+"${appName}:latest"
+            imageName = "localhost:5000/sample-demo"+":latest"
             env.BUILDIMG=imageName
         } 
 
@@ -40,9 +40,9 @@ podTemplate(label: 'mypod', containers: [
             }  
         }
 
-        stage ("Deploy image"){
-            container('kubectl') {
-                sh "kubectl create -f  deploy.yml"
+        stage ("Create helm chart"){
+            container('helm') {
+                sh "helm install --name demo-sample demo-sample"
             }
         }
     }
