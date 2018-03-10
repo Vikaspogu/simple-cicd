@@ -13,7 +13,6 @@ podTemplate(label: 'mypod', containers: [
 
         stage ("Checkout Source"){
             checkout scm
-            appName = "sample-demo"
             imageName = "localhost:5000/sample-demo"+":latest"
             env.BUILDIMG=imageName
         } 
