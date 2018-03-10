@@ -23,12 +23,12 @@ podTemplate(label: 'mypod', containers: [
             }
         }
 
-        stage ("Unit Tests"){
-            container('maven') {
-                echo "Unit Tests"
-                sh 'mvn -B test -DconnectorHost=0.0.0.0'
-            }
-        }
+        // stage ("Unit Tests"){
+        //     container('maven') {
+        //         echo "Unit Tests"
+        //         sh 'mvn -B test -DconnectorHost=0.0.0.0'
+        //     }
+        // }
 
         stage ("Docker Build"){
             container('docker') {

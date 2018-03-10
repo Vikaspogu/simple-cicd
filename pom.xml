@@ -46,11 +46,6 @@
 			<plugin>
 				<groupId>net.ltgt.gwt.maven</groupId>
   				<artifactId>gwt-maven-plugin</artifactId>
-				<configuration>
-					<useSystemClassLoader>true</useSystemClassLoader>
-					<useManifestOnlyJar>false</useManifestOnlyJar>
-					<forkCount>1</forkCount>
-				</configuration>
 			</plugin>
 		</plugins>
 	</build>
