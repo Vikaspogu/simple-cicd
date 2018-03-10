@@ -5,6 +5,9 @@ podTemplate(label: 'mypod', containers: [
     containerTemplate(name: 'maven', image: 'maven:3.5.0-jdk-8-alpine', ttyEnabled: true, command: 'cat',
         resourceRequestCpu: '100m',
         resourceLimitMemory: '1200Mi')
+  ],
+  volumes: [
+    hostPathVolume(mountPath: '/var/run/docker.sock', hostPath: '/var/run/docker.sock'),
   ]) {
     node('mypod') {
 
