@@ -12,7 +12,10 @@ podTemplate(label: 'mypod', containers: [
 
         stage ("Checkout Source"){
             checkout scm
-            imageName = "localhost:5000/sample-demo"+":latest"
+            //OpenShift docker registry
+            imageName = "172.30.1.1:5000/sample-demo"+":latest"
+            //Kubernetes docker registry
+            //imageName = "localhost:5000/sample-demo"+":latest"
             env.BUILDIMG=imageName
         } 
 
