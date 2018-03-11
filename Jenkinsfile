@@ -35,6 +35,7 @@ podTemplate(label: 'mypod', containers: [
 
         stage ("Docker Build"){
             container('docker') {
+                sh "chmod 777 /var/run/docker.sock"
                 sh "docker build -t ${imageName} ."
                 sh "docker push ${imageName}"
             }  
