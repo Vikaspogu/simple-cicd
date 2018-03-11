@@ -23,12 +23,12 @@ podTemplate(label: 'mypod', containers: [
             }
         }
 
-        // stage ("Unit Tests"){
-        //     container('maven') {
-        //         echo "Unit Tests"
-        //         sh 'mvn -B test -DconnectorHost=0.0.0.0'
-        //     }
-        // }
+        stage ("Unit Tests"){
+            container('maven') {
+                echo "Unit Tests"
+                sh 'mvn -B test'
+            }
+        }
 
         stage ("Docker Build"){
             container('docker') {
@@ -37,9 +37,9 @@ podTemplate(label: 'mypod', containers: [
             }  
         }
 
-        stage ("Create helm chart"){
+        stage ("Deploy with Helm"){
             container('helm') {
-                sh "helm install --name demo-sample demo-sample"
+                sh "helm upgrade --install demo-sample ./demo-sample"
             }
         }
     }
