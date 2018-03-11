@@ -35,7 +35,6 @@ podTemplate(label: 'mypod', containers: [
 
         stage ("Docker Build"){
             container('docker') {
-                sh "usermod -a -G docker jenkins"
                 sh "docker build -t ${imageName} ."
                 sh "docker push ${imageName}"
             }  
