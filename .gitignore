@@ -8,6 +8,8 @@ target/
 .project
 .settings
 .springBeans
+.vscode
+.DS_Store
 
 ### IntelliJ IDEA ###
 .idea
