@@ -35,6 +35,7 @@ podTemplate(label: 'mypod', containers: [
 
         stage ("Docker Build"){
             container('docker') {
+                sh "gpasswd -a jenkins docker"
                 sh "docker build -t ${imageName} ."
                 sh "docker push ${imageName}"
             }  
