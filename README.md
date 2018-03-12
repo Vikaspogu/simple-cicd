@@ -18,7 +18,7 @@ For latest Helm version
     $ git clone https://github.com/jorgemoralespou/minishift-addons
     $ cd minishift-addons
     $ vi helm/helm.addon
-    update lachlanevenson/k8s-helm:v2.5.0 to lachlanevenson/k8s-helm:latest
+    update docker image lachlanevenson/k8s-helm:v2.5.0 to lachlanevenson/k8s-helm:latest
     $ minishift addons install helm
     $ minishift addons apply helm
     $ oc get pods -n kube-system
@@ -35,7 +35,7 @@ Deploying Jenkins pod using Helm
   1. In values.yml adminuser and password are set
   2. ImageTag,ServiceType,InstallPlugins are modified
     
-    $ git clone https://github.com/Vikaspogu/simple-cicd.git
+    $ git clone https://github.com/Vikaspogu/simple-jenkins-helm.git
     $ cd simple-cicd
     $ oc new-project jenkins
     $ helm install --name jenkins -f demo/jenkins/values.yml stable/jenkins --host $TILLER_HOST --kube-context default/192-168-99-100:8443/system:admin --namespace jenkins
