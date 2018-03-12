@@ -5,7 +5,8 @@
 replicaCount: 1
 
 image:
-  repository: localhost:5000/sample-demo
+  #repository: localhost:5000/sample-demo
+  repository: 172.30.1.1:5000/openshift/sample-demo
   tag: latest
   pullPolicy: IfNotPresent
 
