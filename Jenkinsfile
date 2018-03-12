@@ -26,12 +26,12 @@ podTemplate(label: 'mypod', containers: [
             }
         }
 
-        stage ("Unit Tests"){
-            container('maven') {
-                echo "Unit Tests"
-                sh 'mvn -B  -s nexus_settings.xml test'
-            }
-        }
+        // stage ("Unit Tests"){
+        //     container('maven') {
+        //         echo "Unit Tests"
+        //         sh 'mvn -B  -s nexus_settings.xml test'
+        //     }
+        // }
 
         stage ("Docker Build"){
             container('docker') {
