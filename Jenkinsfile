@@ -13,16 +13,19 @@ podTemplate(label: 'mypod', containers: [
         stage ("Checkout Source"){
             checkout scm
             //OpenShift docker registry
-            imageName = "172.30.1.1:5000/openshift/sample-demo"+":latest"
+            //imageName = "172.30.1.1:5000/openshift/sample-demo"+":latest"
+
             //Kubernetes docker registry
-            //imageName = "localhost:5000/sample-demo"+":latest"
+            imageName = "localhost:5000/sample-demo"+":latest"
             env.BUILDIMG=imageName
         } 
 
         stage ("Build war"){
             container('maven') {
                 echo "Building version"
-                sh 'mvn -B clean install -s nexus_settings.xml -Dmaven.test.skip=true -Dfindbugs.fork=false'
+                sh 'mvn -B clean install -Dmaven.test.skip=true -Dfindbugs.fork=false'
+
+                //sh 'mvn -B clean install -s nexus_settings.xml -Dmaven.test.skip=true -Dfindbugs.fork=false'
             }
         }
 
@@ -36,7 +39,8 @@ podTemplate(label: 'mypod', containers: [
         stage ("Docker Build"){
             container('docker') {
                 //Docker login for minishift docker registry, comment out for minikube
-                sh "docker login -u admin -p pbWZvJEl5BrE90Nfm19RGRiUJ8_BUvyYm5Y2eHivpcM 172.30.1.1:5000"
+                //sh "docker login -u admin -p pbWZvJEl5BrE90Nfm19RGRiUJ8_BUvyYm5Y2eHivpcM 172.30.1.1:5000"
+                
                 sh "docker build -t ${imageName} ."
                 sh "docker push ${imageName}"
             }  
