@@ -1,4 +1,6 @@
-apiVersion: apps/v1beta2
+apiVersion: apps/v1beta1
+#apiVersion v1beta2 worked in minikube but minishift required v1beta1
+#apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
   name: {{ template "demo-sample.fullname" . }}
