@@ -7,7 +7,7 @@ Master:
   Component: "jenkins-master"
   UseSecurity: true
   AdminUser: admin
-  # AdminPassword: <defaults to random>
+  AdminPassword: admin123
   Cpu: "200m"
   Memory: "256Mi"
   # Set min/max heap here if needed with:
@@ -18,7 +18,7 @@ Master:
   # When setting RunAsUser to a different value than 0 also set FsGroup to the same value:
   # RunAsUser: <defaults to 0>
   # FsGroup: <will be omitted in deployment if RunAsUser is 0>
-  #RunAsUser: 1000
+  #RunAsUser: 1000090000
   #FsGroup: 1000
   ServicePort: 8080
   # For minikube, set this to NodePort, elsewhere use LoadBalancer
@@ -155,7 +155,7 @@ NetworkPolicy:
 
 ## Install Default RBAC roles and bindings
 rbac:
-  install: false
+  install: true
   serviceAccountName: default
   # RBAC api version (currently either v1beta1 or v1alpha1)
   apiVersion: v1beta1

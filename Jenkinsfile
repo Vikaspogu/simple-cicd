@@ -35,6 +35,7 @@ podTemplate(label: 'mypod', containers: [
 
         stage ("Docker Build"){
             container('docker') {
+                sh "docker login -u admin -p pbWZvJEl5BrE90Nfm19RGRiUJ8_BUvyYm5Y2eHivpcM 172.30.1.1:5000"
                 sh "docker build -t ${imageName} ."
                 sh "docker push ${imageName}"
             }  
